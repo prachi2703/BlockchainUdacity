@@ -9,8 +9,9 @@ contract StarNotary is ERC721 {
     // Star data
     struct Star {
         string name;
-        string symbol;
     }
+    string public constant name = "Udacity Star Token";
+    string public constant symbol = "UST";
 
     // Implement Task 1 Add a name and symbol properties
     // name: Is a short name to your token
@@ -22,8 +23,8 @@ contract StarNotary is ERC721 {
     mapping(uint256 => uint256) public starsForSale;
 
     // Create Star using the Struct
-    function createStar(string memory _name, string memory _symbol, uint256 _tokenId) public { // Passing the name and tokenId as a parameters
-        Star memory newStar = Star(_name,_symbol); // Star is an struct so we are creating a new Star
+    function createStar(string memory _name,uint256 _tokenId) public { // Passing the name and tokenId as a parameters
+        Star memory newStar = Star(_name); // Star is an struct so we are creating a new Star
         tokenIdToStarInfo[_tokenId] = newStar; // Creating in memory the Star -> tokenId mapping
         _mint(msg.sender, _tokenId); // _mint assign the the star with _tokenId to the sender address (ownership)
     }
